@@ -1,16 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import Crousel from './Components/Crousel';
-import { Box} from '@chakra-ui/react';
-import { Slider } from './Components/Slider';
+import {Routes, Route} from "react-router-dom";
+import Login from './Pages/Login';
+import SignUp from './Pages/SignUp';
+import HomePage from './Pages/HomePage';
+
+
 
 function App() {
   return (
-   <Box>
-    <Crousel/>
-    <Slider/>
-   </Box>
+   
+  <Routes>
+    <Route path='/' element={<HomePage/>}  />
+    <Route path='/login' element={<Login/>}  />
+    <Route path='/signup' element={<SignUp/>}  />
 
+  </Routes>
     
   );
 }
