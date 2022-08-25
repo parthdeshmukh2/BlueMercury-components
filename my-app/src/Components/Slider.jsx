@@ -15,7 +15,7 @@ import { Box } from "@chakra-ui/react";
 
 export const Slider= ()=>{
   return (
-    <Box mt='16'>
+    <Box mt='16' h='200px'>
       <Swiper
         // slidesPerView={3}
         spaceBetween={30}
