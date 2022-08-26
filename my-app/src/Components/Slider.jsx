@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Text, Image, Spinner} from "@chakra-ui/react"
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,9 +14,14 @@ import "../styles.css";
 import { Pagination, Navigation } from "swiper";
 import { Box } from "@chakra-ui/react";
 
-export const Slider= ()=>{
+export const Slider= (dataArr)=>{
+  const {data, isLoading} = dataArr;
+  console.log(isLoading)
+  
+ 
   return (
-    <Box mt='16' h='200px'>
+    <Box m='auto' mt='8'  w='80%' >
+     
       <Swiper
         // slidesPerView={3}
         spaceBetween={30}
@@ -47,15 +53,28 @@ export const Slider= ()=>{
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+      
+
+    {data.map((elem)=> {
+      return (
+
+        <SwiperSlide key={elem._id}>
+          <Box display='flex' flexDirection='column' boxShadow='2xl' p='4' h='350px' mb='8' borderRadius='xl' cursor='pointer'>
+            <Box h='70%'>
+            <Image  src={elem.Image} />
+            </Box>
+          <Text mt='2' fontSize='md'>{elem.Brand}</Text>
+           <Text fontSize='md' color='gray'>{elem.Title}</Text>
+           <Text fontSize='md' color='gray'> $ {elem.Price}</Text>
+
+          </Box>
+         
+        </SwiperSlide>
+
+      )
+    })}
+      
+       
       </Swiper>
     </Box>
   );

@@ -14,7 +14,7 @@ import HeroBanner3 from "../Assets/HeroBanner3.jpeg";
 
 const Crousel = () => {
   return (
-    <Box h="430px" bg="black">
+    <Box >
         <Box h='35px' bg="rgb(215,235,242)"  display='flex' alignItems='center' justifyContent='center' border='none'>
             <Text fontFamily='Montserrat Medium,sans-serif' fontSize='10px' color='gray'  fontWeight='500'       letterSpacing= '-10%'>
 FREE SAMPLES WITH ALL ORDERS
