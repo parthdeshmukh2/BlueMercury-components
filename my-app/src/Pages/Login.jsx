@@ -1,8 +1,37 @@
 import { Box, Button, Input, Text } from "@chakra-ui/react";
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
+
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
+
+    const handleLogin = async () =>{
+        if(email, pass){
+            const payload = {
+               Email: email,
+                 Password: pass
+            }
+            await fetch("https://stark-lake-19402.herokuapp.com/user/login", {
+                method:"POST",
+                body: JSON.stringify(payload), 
+                headers:{"Content-Type":"application/json"}
+            })
+            .then((res)=> res.json())
+            .then((res)=> {
+                console.log(res.token);
+                localStorage.setItem("token", res.token)
+            }
+                )
+            .catch((err)=> console.log(err));
+            alert("Login SuccessFull")
+        }
+        else{
+            console.log("All Fields are required")
+        }
+
+    }
   return (
     <Box
       w={{ base: "90%", sm: "90%", lg: "35%" }}
@@ -45,6 +74,7 @@ const Login = () => {
           p="4"
           placeholder="Email"
           type="email"
+          onChange={(e)=> setEmail(e.target.value)}
         />
         <Input
           w="90%"
@@ -56,6 +86,7 @@ const Login = () => {
           p="4"
           placeholder="Password"
           type="password"
+          onChange={(e)=> setPass(e.target.value)}
         />
         <Button
           w="90%"
@@ -64,6 +95,7 @@ const Login = () => {
           bg="rgb(18,40,76)"
           borderRadius="0"
           color="White"
+          onClick={handleLogin}
         >
           LOGIN
         </Button>
